@@ -1,0 +1,6 @@
+export * as accountController from './account.controller'
+export * as channelController from './channel.controller'
+export * as videoController from './video.controller'
+export * as commentController from './comment.controller'
+export * as hashtagController from './hashtag.controller'
+export * as communityPostController from './post.controller'

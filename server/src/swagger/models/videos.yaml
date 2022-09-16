@@ -1,0 +1,23 @@
+videos:
+  type: object
+  properties:
+    id:
+      type: integer
+    createdAt:
+      type: string
+      format: date
+    updatedAt:
+      type: string
+      format: date
+    title:
+      type: string
+    viewsCnt:
+      type: string
+    description:
+      type: string
+    len:
+      type: integer
+    thumbnailUrl:
+      type: string
+    channelId:
+      type: integer

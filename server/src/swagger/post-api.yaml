@@ -1,0 +1,276 @@
+/posts:
+  patch:
+    summary: 토큰의 사용자가 커뮤니티 게시글을 추가합니다
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contents:
+                type: string
+              imgUrl:
+                type: string
+            required:
+              - contents
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/posts.yaml#/posts'
+
+/posts/{postId}:
+  patch:
+    summary: 토큰의 사용자가 커뮤니티 게시글을 수정합니다
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contents:
+                type: string
+              imgUrl:
+                type: string
+            required:
+              - contents
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/posts.yaml#/posts'
+
+  get:
+    summary: 커뮤니티 게시글 반환
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/posts.yaml#/posts'
+
+  delete:
+    summary: 커뮤니티 게시글 삭제
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+
+/posts/{postId}/comments:
+  post:
+    summary: 토큰의 사용자가 커뮤니티 게시글에 댓글을 추가합니다.
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contents:
+                type: string
+            required:
+              - contents
+
+  get:
+    summary: 커뮤니티 게시글의 댓글을 반환합니다.
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/comments.yaml#/comments'
+
+/posts/{postId}/like:
+  post:
+    summary: 토큰의 사용자가 커뮤니티 게시글에 좋아요/싫어요를 합니다.
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              isLike:
+                type: boolean
+            required:
+              - isLike
+
+  delete:
+    summary: 토큰의 사용자가 커뮤니티 게시글의 좋아요/싫어요를 취소합니다.
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+      - in: query
+        name: isLike
+        required: true
+        description: 좋아요/싫어요 여부
+        schema:
+          type: boolean
+
+/posts/{postId}/like/count:
+  get:
+    summary: 커뮤니티 게시글의 좋아요/싫어요 개수 반환
+    tags:
+      - posts
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+      - in: query
+        name: isLike
+        required: true
+        description: 좋아요/싫어요 여부
+        schema:
+          type: boolean
+    query:
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                count:
+                  type: integer
+
+/posts/{postId}/tags:
+  post:
+    summary: 커뮤니티 게시글 태그 달기
+    tags:
+      - posts
+      - tags
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+
+  get:
+    summary: 커뮤니티 게시글 태그 반환
+    tags:
+      - posts
+      - tags
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: integer
+
+/posts/{postId}/tags/{tagTitle}:
+  delete:
+    summary: 커뮤니티 게시글 태그 지우기
+    tags:
+      - posts
+      - tags
+    parameters:
+      - in: path
+        name: postId
+        required: true
+        description: 커뮤니티 게시글 ID
+        schema:
+          type: integer
+      - in: path
+        name: tagTitle
+        required: true
+        description: 태그 제목
+        schema:
+          type: string

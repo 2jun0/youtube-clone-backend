@@ -1,0 +1,125 @@
+/accounts:
+  post:
+    summary: 계정 만들기
+    tags:
+      - accounts
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+            required:
+              - email
+              - password
+              - firstName
+              - lastName
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/accounts.yaml#/accounts'
+
+/accounts/{accountId}:
+  patch:
+    summary: 계정 수정하기
+    tags:
+      - accounts
+    parameters:
+      - in: path
+        name: accountId
+        required: true
+        description: 계정 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/accounts.yaml#/accounts'
+
+  delete:
+    summary: 계정 삭제하기
+    tags:
+      - accounts
+    parameters:
+      - in: path
+        name: accountId
+        required: true
+        description: 계정 ID
+        schema:
+          type: integer
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: './models/accounts.yaml#/accounts'
+
+  get:
+    summary: 계정 정보받기
+    tags:
+      - accounts
+    parameters:
+      - in: path
+        name: accountId
+        required: true
+        description: 계정 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/accounts.yaml#/accounts'
+
+/accounts/token:
+  post:
+    summary: JWT 생성
+    tags:
+      - accounts
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+            required:
+              - email
+              - password
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string

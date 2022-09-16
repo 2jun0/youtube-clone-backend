@@ -1,0 +1,148 @@
+/comments/{commentId}/reply:
+  post:
+    summary: 답글 생성
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contents:
+                type: string
+            required:
+              - contents
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/comments.yaml#/comments'
+
+/comments/{commentId}:
+  patch:
+    summary: 댓글 수정
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contents:
+                type: string
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/comments.yaml#/comments'
+
+  delete:
+    summary: 댓글 삭제
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+
+  get:
+    summary: 댓글 반환
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/comments.yaml#/comments'
+
+/comments/{commentId}/like:
+  post:
+    summary: 토큰의 사용자가 댓글에 좋아요/싫어요를 합니다.
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              isLike:
+                type: boolean
+            required:
+              - isLike
+
+  delete:
+    summary: 토큰의 사용자가 댓글의 좋아요/싫어요를 취소합니다.
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+
+/comments/{commentId}/like/count:
+  get:
+    summary: 댓글의 좋아요/싫어요 개수 반환
+    tags:
+      - comments
+    parameters:
+      - in: path
+        name: commentId
+        required: true
+        description: 댓글 ID
+        schema:
+          type: integer
+      - in: query
+        name: isLike
+        required: true
+        description: 좋아요/싫어요 여부
+        schema:
+          type: boolean
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                count:
+                  type: integer

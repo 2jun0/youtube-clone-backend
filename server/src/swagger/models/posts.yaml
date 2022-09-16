@@ -1,0 +1,17 @@
+posts:
+  type: object
+  properties:
+    id:
+      type: integer
+    createdAt:
+      type: string
+      format: date
+    updatedAt:
+      type: string
+      format: date
+    contents:
+      type: string
+    imgUrl:
+      type: string
+    channelId:
+      type: integer

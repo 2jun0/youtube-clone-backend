@@ -1,0 +1,76 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: YouTube DB Clone
+  description: This is YouTube Database Clone Server. It don't deal with whole YouTube service.
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/
+paths:
+  /accounts:
+    $ref: './account-api.yaml#/~1accounts'
+  /accounts/{accountId}:
+    $ref: './account-api.yaml#/~1accounts~1{accountId}'
+  /accounts/token:
+    $ref: './account-api.yaml#/~1accounts~1token'
+  /channels:
+    $ref: './channel-api.yaml#/~1channels'
+  /channels/{channelId}:
+    $ref: './channel-api.yaml#/~1channels~1{channelId}'
+  /channels/{channelId}/subscribe/count:
+    $ref: './channel-api.yaml#/~1channels~1{channelId}~1subscribe~1count'
+  /channels/{channelId}/subscribe/{subscribingId}:
+    $ref: './channel-api.yaml#/~1channels~1{channelId}~1subscribe~1{subscribingId}'
+  /channels/{channelId}/subscribe/{subscribedId}:
+    $ref: './channel-api.yaml#/~1channels~1{channelId}~1subscribe~1{subscribedId}'
+  /videos:
+    $ref: './video-api.yaml#/~1videos'
+  /videos/{videoId}:
+    $ref: './video-api.yaml#/~1videos~1{videoId}'
+  /videos/{videoId}/relatives:
+    $ref: './video-api.yaml#/~1videos~1{videoId}~1relatives'
+  /videos/{videoId}/comments:
+    $ref: './video-api.yaml#/~1videos~1{videoId}~1comments'
+  /videos/{videoId}/like:
+    $ref: './video-api.yaml#/~1videos~1{videoId}~1like'
+  /videos/{videoId}/like/count:
+    $ref: './video-api.yaml#/~1videos~1{videoId}~1like~1count'
+  /videos/{videoId}/tags:
+    $ref: './video-api.yaml#/~1videos~1{videoId}~1tags'
+  /videos/{videoId}/tags/{tagTitle}:
+    $ref: './video-api.yaml#/~1videos~1{videoId}~1tags~1{tagTitle}'
+  /tags/{tagTitle}/videos:
+    $ref: './video-api.yaml#/~1tags~1{tagTitle}~1videos'
+  /comments/{commentId}/reply:
+    $ref: './comment-api.yaml#/~1comments~1{commentId}~1reply'
+  /comments/{commentId}:
+    $ref: './comment-api.yaml#/~1comments~1{commentId}'
+  /comments/{commentId}/like:
+    $ref: './comment-api.yaml#/~1comments~1{commentId}~1like'
+  /comments/{commentId}/like/count:
+    $ref: './comment-api.yaml#/~1comments~1{commentId}~1like~1count'
+  /posts:
+    $ref: './post-api.yaml#/~1posts'
+  /posts/{postId}:
+    $ref: './post-api.yaml#/~1posts~1{postId}'
+  /posts/{postId}/comments:
+    $ref: './post-api.yaml#/~1posts~1{postId}~1comments'
+  /posts/{postId}/like:
+    $ref: './post-api.yaml#/~1posts~1{postId}~1like'
+  /posts/{postId}/like/count:
+    $ref: './post-api.yaml#/~1posts~1{postId}~1like~1count'
+  /posts/{postId}/tags:
+    $ref: './post-api.yaml#/~1posts~1{postId}~1tags'
+  /posts/{postId}/tags/{tagTitle}:
+    $ref: './post-api.yaml#/~1posts~1{postId}~1tags~1{tagTitle}'
+components:
+  schemas:
+    accounts:
+      $ref: './models/accounts.yaml#/accounts'
+    channels:
+      $ref: './models/channels.yaml#/channels'
+    videos:
+      $ref: './models/videos.yaml#/videos'
+    comments:
+      $ref: './models/comments.yaml#/comments'

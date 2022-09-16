@@ -1,0 +1,19 @@
+comments:
+  type: object
+  properties:
+    id:
+      type: integer
+    createdAt:
+      type: string
+      format: date
+    updatedAt:
+      type: string
+      format: date
+    contents:
+      type: string
+    channelId:
+      type: integer
+    videoId:
+      type: integer
+    postId:
+      type: integer

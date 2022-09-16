@@ -1,0 +1,309 @@
+/videos:
+  post:
+    summary: 동영상 생성
+    tags:
+      - videos
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              len:
+                type: integer
+              thumbnailUrl:
+                type: integer
+            required:
+              - title
+              - len
+              - thumbnaulUrl
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/videos.yaml#/videos'
+
+/videos/{videoId}:
+  patch:
+    summary: 동영상 정보 수정
+    tags:
+      - videos
+    parameters:
+      - in: path
+        name: vodeoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              len:
+                type: integer
+              thumbnailUrl:
+                type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/videos.yaml#/videos'
+
+  delete:
+    summary: 동영상 삭제하기
+    tags:
+      - videos
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/videos.yaml#/videos'
+
+/videos/{videoId}/relatives:
+  get:
+    summary: 관련 동영상 반환
+    tags:
+      - videos
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/videos.yaml#/videos'
+
+/videos/{videoId}/comments:
+  post:
+    summary: 동영상 댓글 쓰기
+    tags:
+      - videos
+      - comments
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contents:
+                type: string
+            required:
+              - contents
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/comments.yaml#/comments'
+
+  get:
+    summary: 동영상 댓글 반환
+    tags:
+      - videos
+      - comments
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/comments.yaml#/comments'
+
+/videos/{videoId}/like:
+  post:
+    summary: 토큰의 사용자가 동영상에 좋아요/싫어요를 합니다.
+    tags:
+      - videos
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              isLike:
+                type: boolean
+            required:
+              - isLike
+
+  delete:
+    summary: 토큰의 사용자가 동영상의 좋아요/싫어요를 취소합니다.
+    tags:
+      - videos
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+      - in: query
+        name: isLike
+        required: true
+        description: 좋아요/싫어요 여부
+        schema:
+          type: boolean
+
+/videos/{videoId}/like/count:
+  get:
+    summary: 동영상의 좋아요/싫어요 개수 반환
+    tags:
+      - videos
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+      - in: query
+        name: isLike
+        required: true
+        description: 좋아요/싫어요 여부
+        schema:
+          type: boolean
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                count:
+                  type: integer
+
+/videos/{videoId}/tags:
+  post:
+    summary: 동영상 태그 달기
+    tags:
+      - videos
+      - tags
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+
+  get:
+    summary: 동영상 태그 반환
+    tags:
+      - videos
+      - tags
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titles:
+                  type: array
+                  items:
+                    type: string
+
+/videos/{videoId}/tags/{tagTitle}:
+  delete:
+    summary: 동영상 태그 지우기
+    tags:
+      - videos
+      - tags
+    parameters:
+      - in: path
+        name: videoId
+        required: true
+        description: 동영상 ID
+        schema:
+          type: integer
+      - in: path
+        name: tagTitle
+        required: true
+        description: 태그 제목
+        schema:
+          type: string
+
+/tags/{tagTitle}/videos:
+  get:
+    summary: 태그된 동영상 보기
+    tags:
+      - videos
+      - tags
+    parameters:
+      - in: path
+        name: tagTitle
+        required: true
+        description: 태그 제목
+        schema:
+          type: string
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: './models/videos.yaml#/videos'

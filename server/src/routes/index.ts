@@ -1,0 +1,6 @@
+export { router as accountRouter } from './account'
+export { router as channelRouter } from './channel'
+export { router as videoRouter } from './video'
+export { router as commentRouter } from './comment'
+export { router as hashtagRouter } from './hashtag'
+export { router as communityPostRouter } from './post'

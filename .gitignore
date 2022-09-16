@@ -1,0 +1,11 @@
+*.log
+*.env*
+
+sqlite.db
+
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/

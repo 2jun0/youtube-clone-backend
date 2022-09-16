@@ -1,0 +1,141 @@
+/channels:
+  post:
+    summary: 채널 생성
+    tags:
+      - channels
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+            required:
+              - name
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/channels.yaml#/channels'
+
+/channels/{channelId}:
+  patch:
+    summary: 채널 정보 수정
+    tags:
+      - channels
+    parameters:
+      - in: path
+        name: channelId
+        required: true
+        description: 채널 ID
+        schema:
+          type: integer
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/channels.yaml#/channels'
+
+  delete:
+    summary: 채널 삭제하기
+    tags:
+      - channels
+    parameters:
+      - in: path
+        name: channelId
+        required: true
+        description: 채널 ID
+        schema:
+          type: integer
+
+  get:
+    summary: 채널 정보받기
+    tags:
+      - channels
+    parameters:
+      - in: path
+        name: channelId
+        description: 채널 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: './models/channels.yaml#/channels'
+
+/channels/{channelId}/subscribe/{subscribingId}:
+  post:
+    summary: 채널 구독하기
+    tags:
+      - channels
+    parameters:
+      - in: path
+        name: channelId
+        required: true
+        description: 채널 ID
+        schema:
+          type: integer
+      - in: path
+        name: subscribingId
+        required: true
+        description: 구독할 채널 ID
+        schema:
+          type: integer
+
+/channels/{channelId}/subscribe/{subscribedId}:
+  delete:
+    summary: 채널 구독취소
+    tags:
+      - channels
+    parameters:
+      - in: path
+        name: channelId
+        required: true
+        description: 채널 ID
+        schema:
+          type: integer
+      - in: path
+        name: subscribedId
+        required: true
+        description: 구독한 채널 ID
+        schema:
+          type: integer
+
+/channels/{channelId}/subscribe/count:
+  get:
+    summary: 채널 구독자 수 구하기
+    tags:
+      - channels
+    parameters:
+      - in: path
+        name: channelId
+        required: true
+        description: 채널 ID
+        schema:
+          type: integer
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                count:
+                  type: integer

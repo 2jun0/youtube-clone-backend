@@ -1,0 +1,19 @@
+accounts:
+  type: object
+  properties:
+    id:
+      type: integer
+    createdAt:
+      type: string
+      format: date
+    updatedAt:
+      type: string
+      format: date
+    email:
+      type: string
+    password:
+      type: string
+    firstName:
+      type: string
+    lastName:
+      type: string
