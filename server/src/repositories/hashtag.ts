@@ -1,9 +1,9 @@
-import { AppDataSource } from '../database/data-source'
-import { CommunityPost, Hashtag, Video } from '../database/entity'
+import { AppDataSource } from '../database/dataSource'
+import { CommunityPost, Hashtag, Video } from '../database/entities'
 import {
   HashtagsForPost,
   HashtagsForVideo,
-} from '../database/entity/relationship'
+} from '../database/entities/relationship'
 
 const hashtagRepository = AppDataSource.getRepository(Hashtag)
 const videoRepository = AppDataSource.getRepository(Video)

@@ -1,5 +1,5 @@
-import { AppDataSource } from '../database/data-source'
-import { Comment, CommunityPost, Like, Video } from '../database/entity'
+import { AppDataSource } from '../database/dataSource'
+import { Comment, CommunityPost, Like, Video } from '../database/entities'
 
 const likeRepository = AppDataSource.getRepository(Like)
 

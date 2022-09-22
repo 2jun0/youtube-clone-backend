@@ -8,9 +8,8 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm'
-import { Channel } from './channel'
-import { Hashtag } from './hashtag'
-import { HashtagsForVideo } from './relationship/hashtag-for-video'
+import { Channel } from '.'
+import { HashtagsForVideo } from './relationship'
 
 @Entity({ name: 'videos' })
 export class Video {

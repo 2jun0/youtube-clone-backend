@@ -8,7 +8,7 @@ import {
   Check,
   Column,
 } from 'typeorm'
-import { Channel } from '../channel'
+import { Channel } from '..'
 
 @Entity({ name: 'subscribe' })
 @Unique(['subscriberId', 'subscribingId'])

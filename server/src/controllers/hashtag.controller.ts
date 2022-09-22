@@ -1,5 +1,5 @@
 import { HashtagRepository } from '../repositories'
-import { middleware } from '../shared/middleware'
+import { middleware } from '../middlewares/middleware'
 
 export const getTaggedVideos: middleware = async (req, res, next) => {
   try {

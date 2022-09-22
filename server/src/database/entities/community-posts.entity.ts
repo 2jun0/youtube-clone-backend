@@ -8,7 +8,7 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm'
-import { Channel } from './channel'
+import { Channel } from '.'
 import { HashtagsForPost } from './relationship'
 
 @Entity({ name: 'community_posts' })

@@ -1,11 +1,11 @@
-import { AppDataSource } from '../database/data-source'
-import { Account, CommunityPost } from '../database/entity'
+import { AppDataSource } from '../database/dataSource'
+import { Account, CommunityPost } from '../database/entities'
 import {
   CommentRespository,
   HashtagRepository,
   LikeRepository,
 } from '../repositories'
-import { middleware } from '../shared/middleware'
+import { middleware } from '../middlewares/middleware'
 
 const communityPostRepository = AppDataSource.getRepository(CommunityPost)
 

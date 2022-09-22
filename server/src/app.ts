@@ -8,7 +8,7 @@ import path from 'path'
 import swaggerUi from 'swagger-ui-express'
 import YAML from 'yamljs'
 
-import { AppDataSource } from './database/data-source'
+import { AppDataSource } from './database/dataSource'
 import { errorHandler } from './middlewares/error-handler'
 import {
   accountRouter,

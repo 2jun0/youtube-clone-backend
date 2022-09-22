@@ -1,5 +1,5 @@
-import { AppDataSource } from '../database/data-source'
-import { Video } from '../database/entity'
+import { AppDataSource } from '../database/dataSource'
+import { Video } from '../database/entities'
 import {
   CommentRespository,
   HashtagRepository,

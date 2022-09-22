@@ -5,44 +5,34 @@ import {
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
-  UpdateDateColumn,
+  Unique,
   Check,
 } from 'typeorm'
-import { Channel } from './channel'
-import { CommunityPost } from './community-posts'
-import { Video } from './video'
+import { Channel, Comment, CommunityPost, Video } from '.'
 
-@Entity({ name: 'comments' })
+@Entity({ name: 'likes' })
+@Unique(['channel', 'video', 'post', 'comment'])
 @Check(
   'COALESCE((video_id)::BOOLEAN::INTEGER, 0) \
   + \
   COALESCE((post_id)::BOOLEAN::INTEGER, 0) \
+  + \
+  COALESCE((comment_id)::BOOLEAN::INTEGER, 0) \
   = 1'
 )
-export class Comment {
+export class Like {
   @PrimaryGeneratedColumn('increment')
   id: number
 
   @CreateDateColumn()
   createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date
-
-  @Column({ length: 500 })
-  contents: string
+  @Column({ default: true })
+  isLike: boolean
 
   @ManyToOne(() => Channel, { nullable: false, cascade: ['remove'] })
   @JoinColumn({ name: 'channel_id' })
   channel: Channel
-
-  @ManyToOne(() => Comment, { cascade: ['remove'] })
-  @JoinColumn({ name: 'ref_comment_id' })
-  refComment: Comment
-
-  @ManyToOne(() => Comment, { cascade: ['remove'] })
-  @JoinColumn({ name: 'parent_comment_id' })
-  parentComment: Comment
 
   @ManyToOne(() => Video, { cascade: ['remove'] })
   @JoinColumn({ name: 'video_id' })
@@ -51,4 +41,8 @@ export class Comment {
   @ManyToOne(() => CommunityPost, { cascade: ['remove'] })
   @JoinColumn({ name: 'post_id' })
   post: CommunityPost
+
+  @ManyToOne(() => Comment, { cascade: ['remove'] })
+  @JoinColumn({ name: 'comment_id' })
+  comment: Comment
 }

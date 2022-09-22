@@ -5,8 +5,7 @@ import {
   JoinColumn,
   Unique,
 } from 'typeorm'
-import { Hashtag } from '../hashtag'
-import { Video } from '../video'
+import { Video, Hashtag } from '..'
 
 @Entity({ name: 'hashtags_for_video' })
 @Unique(['hashtag', 'video'])

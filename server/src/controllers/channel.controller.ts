@@ -1,7 +1,7 @@
-import { AppDataSource } from '../database/data-source'
-import { Channel } from '../database/entity'
-import { Subscribe } from '../database/entity/relationship'
-import { middleware } from '../shared/middleware'
+import { AppDataSource } from '../database/dataSource'
+import { Channel } from '../database/entities'
+import { Subscribe } from '../database/entities/relationship'
+import { middleware } from '../middlewares/middleware'
 
 const channelRepository = AppDataSource.getRepository(Channel)
 const subscribeRepository = AppDataSource.getRepository(Subscribe)

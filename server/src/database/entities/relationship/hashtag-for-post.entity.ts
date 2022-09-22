@@ -5,8 +5,7 @@ import {
   JoinColumn,
   Unique,
 } from 'typeorm'
-import { CommunityPost } from '../community-posts'
-import { Hashtag } from '../hashtag'
+import { CommunityPost, Hashtag } from '..'
 
 @Entity({ name: 'hashtags_for_post' })
 @Unique(['hashtag', 'post'])

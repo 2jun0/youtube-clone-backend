@@ -1,5 +1,5 @@
-import { AppDataSource } from '../database/data-source'
-import { Account } from '../database/entity'
+import { AppDataSource } from '../database/dataSource'
+import { Account } from '../database/entities'
 import HttpException, {
   UnauthorizedStatus,
 } from '../utils/exceptions/HttpException'
