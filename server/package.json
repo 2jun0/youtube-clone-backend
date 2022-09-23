@@ -33,7 +33,9 @@
     "yamljs": "^0.3.0"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^8.5.9",
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "dotenv-cli": "^6.0.0",
     "express-async-errors": "^3.1.1",
