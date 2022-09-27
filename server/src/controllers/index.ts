@@ -1,4 +1,5 @@
 export * as accountController from './account.controller'
+export * as authController from './auth.controller'
 export * as channelController from './channel.controller'
 export * as videoController from './video.controller'
 export * as commentController from './comment.controller'
