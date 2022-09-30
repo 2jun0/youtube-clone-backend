@@ -9,6 +9,7 @@ import swaggerUi from 'swagger-ui-express'
 import YAML from 'yamljs'
 
 import { AppDataSource } from './database/dataSource'
+import redis from './database/redis'
 import { errorHandler } from './middlewares/error-handler'
 import {
   accountRouter,
@@ -23,6 +24,9 @@ import {
 AppDataSource.initialize()
   .then(() => console.log('Data Source has been initialized!'))
   .catch(err => console.error('Error during Data Source initialization:', err))
+
+// establish redis db connection
+redis.init()
 
 const app = express()
 
